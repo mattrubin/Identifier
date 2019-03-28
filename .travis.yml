@@ -1,0 +1,13 @@
+stages:
+  - pretest
+  - test
+
+jobs:
+  include:
+    - stage: pretest
+      name: Ensure all tests will run on Linux
+      os: osx
+      osx_image: xcode10.2
+      language: swift
+      install: swift test --generate-linuxmain
+      script: git diff --exit-code

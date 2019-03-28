@@ -1,15 +1,10 @@
 import XCTest
-@testable import Identifier
+import Identifier
 
 final class IdentifierTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(Identifier().text, "Hello, World!")
+    func testInitWithUUID() {
+        let uuid = UUID()
+        let identifier = Identifier<Void>(uuid: uuid)
+        XCTAssertEqual(uuid, identifier.uuid)
     }
-
-    static var allTests = [
-        ("testExample", testExample),
-    ]
 }

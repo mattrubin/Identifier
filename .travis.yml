@@ -11,3 +11,14 @@ jobs:
       language: swift
       install: swift test --generate-linuxmain
       script: git diff --exit-code
+
+    - stage: test
+      name: Linux / Swift 5.0
+      os: linux
+      dist: trusty
+      sudo: false
+      language: generic
+      env: SWIFT_VERSION=5.0 SWIFT_BUILD_VERSION=5 
+      before_install: eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
+      install: swift build -Xswiftc -swift-version -Xswiftc $SWIFT_BUILD_VERSION
+      script: swift test -Xswiftc -swift-version -Xswiftc $SWIFT_BUILD_VERSION

@@ -15,7 +15,7 @@ struct Comment: Equatable, Codable {
     let date: Date
 }
 ```
-You can use typed identifiers, which help ensure an ID for a model of one type is neevr accidentally used in place of another:
+You can use typed identifiers, which help ensure an ID for a model of one type is never accidentally used in place of another:
 ```swift
 struct Comment: Equatable, Codable {
     let postID: Identifier<Post>

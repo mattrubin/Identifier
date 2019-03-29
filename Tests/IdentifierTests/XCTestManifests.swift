@@ -7,6 +7,7 @@ extension IdentifierTests {
     // to regenerate.
     static let __allTests__IdentifierTests = [
         ("testInitWithUUID", testInitWithUUID),
+        ("testRandomIdentifier", testRandomIdentifier),
     ]
 }
 

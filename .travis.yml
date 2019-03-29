@@ -22,7 +22,6 @@ jobs:
       script: swift test -Xswiftc -swift-version -Xswiftc 5
 
     - &xcode
-      stage: test
       name: macOS / Xcode 10.2 / Swift 5.0
       xcode_project: Identifier.xcodeproj
       xcode_scheme: Identifier-Package
@@ -32,3 +31,6 @@ jobs:
     - <<: *xcode
       name: iOS / Xcode 10.2 / Swift 5.0
       xcode_destination: 'OS=12.2,name=iPhone SE'
+    - <<: *xcode
+      name: tvOS / Xcode 10.2 / Swift 5.0
+      xcode_destination: 'OS=12.2,name=Apple TV'

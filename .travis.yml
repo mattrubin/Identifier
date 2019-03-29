@@ -13,13 +13,16 @@ jobs:
       install: swift test --generate-linuxmain
       script: git diff --exit-code
 
-    - stage: test
-      name: Linux / Swift 5.0
+    - &spm
+      stage: test
+      name: macOS / SPM 5.0 / Swift 5.0
+      script: swift test -Xswiftc -swift-version -Xswiftc 5
+    - <<: *spm
+      name: Linux / SPM 5.0 / Swift 5.0
       os: linux
       language: generic
       env: SWIFT_VERSION=5.0 
       install: eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
-      script: swift test -Xswiftc -swift-version -Xswiftc 5
 
     - &xcode
       name: macOS / Xcode 10.2 / Swift 5.0

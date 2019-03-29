@@ -1,3 +1,5 @@
+# Configuration for Travis (https://travis-ci.com)
+
 os: osx
 osx_image: xcode10.2
 language: swift
@@ -37,3 +39,6 @@ jobs:
     - <<: *xcode
       name: tvOS / Xcode 10.2 / Swift 5.0
       xcode_destination: 'OS=12.2,name=Apple TV'
+
+notifications:
+  email: false

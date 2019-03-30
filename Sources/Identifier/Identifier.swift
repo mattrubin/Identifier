@@ -11,3 +11,15 @@ public struct Identifier<T>: Equatable, Hashable {
         return self.init(uuid: UUID())
     }
 }
+
+// MARK: - Codable
+
+extension Identifier: Codable {
+    public init(from decoder: Decoder) throws {
+        uuid = try UUID(from: decoder)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        try uuid.encode(to: encoder)
+    }
+}

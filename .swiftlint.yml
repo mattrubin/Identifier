@@ -1,0 +1,5 @@
+# Configuration for SwiftLint (https://github.com/realm/SwiftLint)
+
+excluded:
+  - .build
+  - Carthage

@@ -6,7 +6,11 @@ extension IdentifierTests {
     //   `swift test --generate-linuxmain`
     // to regenerate.
     static let __allTests__IdentifierTests = [
+        ("testDecode", testDecode),
+        ("testEncode", testEncode),
+        ("testEquality", testEquality),
         ("testInitWithUUID", testInitWithUUID),
+        ("testRandomIdentifier", testRandomIdentifier),
     ]
 }
 

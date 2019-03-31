@@ -12,13 +12,13 @@ jobs:
   include:
     - stage: pretest
       name: Validate Linux test manifest
-      install: swift test --generate-linuxmain
+      install: swift test --generate-linuxmain --disable-automatic-resolution
       script: git diff --exit-code
 
     - &spm
       stage: test
       name: macOS / SPM 5.0 / Swift 5.0
-      script: swift test -Xswiftc -swift-version -Xswiftc 5
+      script: swift test --disable-automatic-resolution -Xswiftc -swift-version -Xswiftc 5
     - <<: *spm
       name: Linux / SPM 5.0 / Swift 5.0
       os: linux

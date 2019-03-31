@@ -31,8 +31,6 @@ jobs:
       xcode_project: Identifier.xcodeproj
       xcode_scheme: Identifier
       xcode_destination: 'platform=macOS'
-      before_install: echo "@available(*, unavailable) func doNothing() {}" > Sources/Identifier/_CoverageHack.swift # Add a second source file to appease Codecov processing
-      after_success: bash <(curl -s https://codecov.io/bash)
     - <<: *xcode
       name: iOS / Xcode 10.2 / Swift 5.0
       xcode_destination: 'OS=12.2,name=iPhone SE'
@@ -43,6 +41,16 @@ jobs:
       name: watchOS / Xcode 10.2 / Swift 5.0
       xcode_destination: 'OS=5.2,name=Apple Watch Series 2 - 38mm'
       script: set -o pipefail && xcodebuild -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "$TRAVIS_XCODE_DESTINATION" build | xcpretty
+
+    - name: Gather test coverage
+      xcode_project: Identifier.xcodeproj
+      xcode_scheme: Identifier-Package
+      xcode_destination: 'platform=macOS'
+      before_install:
+        - rm -r Identifier.xcodeproj
+        - echo "@available(*, unavailable) func doNothing() {}" > Sources/Identifier/_CoverageHack.swift # Add a second source file to appease Codecov processing
+      install: swift package generate-xcodeproj --enable-code-coverage
+      after_success: bash <(curl -s https://codecov.io/bash)
 
 notifications:
   email: false

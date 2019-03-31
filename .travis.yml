@@ -39,6 +39,10 @@ jobs:
     - <<: *xcode
       name: tvOS / Xcode 10.2 / Swift 5.0
       xcode_destination: 'OS=12.2,name=Apple TV'
+    - <<: *xcode
+      name: watchOS / Xcode 10.2 / Swift 5.0
+      xcode_destination: 'OS=5.2,name=Apple Watch Series 2 - 38mm'
+      script: set -o pipefail && xcodebuild -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "$TRAVIS_XCODE_DESTINATION" build | xcpretty
 
 notifications:
   email: false

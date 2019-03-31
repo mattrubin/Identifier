@@ -13,5 +13,6 @@ let package = Package(
     targets: [
         .target(name: "Identifier"),
         .testTarget(name: "IdentifierTests", dependencies: ["Identifier", "Nimble"]),
-    ]
+    ],
+    swiftLanguageVersions: [.v5]
 )

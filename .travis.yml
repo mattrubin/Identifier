@@ -29,9 +29,8 @@ jobs:
     - &xcode
       name: macOS / Xcode 10.2 / Swift 5.0
       xcode_project: Identifier.xcodeproj
-      xcode_scheme: Identifier-Package
+      xcode_scheme: Identifier
       xcode_destination: 'platform=macOS'
-      install: swift package generate-xcodeproj --enable-code-coverage
       before_install: echo "@available(*, unavailable) func doNothing() {}" > Sources/Identifier/_CoverageHack.swift # Add a second source file to appease Codecov processing
       after_success: bash <(curl -s https://codecov.io/bash)
     - <<: *xcode

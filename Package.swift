@@ -15,9 +15,7 @@ let package = Package(
             .upToNextMajor(from: "8.0.0")),
     ],
     targets: [
-        .target(
-            name: "Identifier",
-            dependencies: []),
+        .target(name: "Identifier"),
         .testTarget(
             name: "IdentifierTests",
             dependencies: ["Identifier", "Nimble"]),

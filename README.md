@@ -6,6 +6,7 @@
 ![Swift 5.0](https://img.shields.io/badge/swift-5.0-orange.svg)
 ![Available via Carthage or SPM](https://img.shields.io/badge/via-Carthage%20%7C%20SPM-MediumSlateBlue.svg)
 ![Platforms: iOS, macOS, tvOS, watchOS, Linux](https://img.shields.io/badge/platforms-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20watchOS%20%7C%20Linux-blue.svg)
+[![MIT License](https://img.shields.io/badge/license-MIT-lightgray.svg)](LICENSE.md)
 
 `Identifier` is a generic struct backed by a UUID, which can be specialized for the model type it identifies and provides unique, decentralized identity in a value type. It is Equatable, Hashable, and Codable, serializing to a simple UUID string.
 
@@ -27,3 +28,7 @@ struct Comment: Equatable, Codable {
     let date: Date
 }
 ```
+
+## License
+
+Identifier is released under the [MIT License](LICENSE.md).

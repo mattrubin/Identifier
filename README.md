@@ -3,6 +3,7 @@
 
 [![Build Status](https://travis-ci.com/mattrubin/Identifier.svg?branch=develop)](https://travis-ci.com/mattrubin/Identifier)
 [![codecov](https://codecov.io/gh/mattrubin/Identifier/branch/develop/graph/badge.svg)](https://codecov.io/gh/mattrubin/Identifier)
+![Swift 5.0](https://img.shields.io/badge/swift-5.0-orange.svg)
 
 `Identifier` is a generic struct backed by a UUID, which can be specialized for the model type it identifies and provides unique, decentralized identity in a value type. It is Equatable, Hashable, and Codable, serializing to a simple UUID string.
 

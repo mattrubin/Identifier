@@ -24,6 +24,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C950E96522529A2500583754 /* Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Framework.xcconfig; path = Base/Targets/Framework.xcconfig; sourceTree = "<group>"; };
+		C950E96622529BA500583754 /* Application.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Application.xcconfig; path = Base/Targets/Application.xcconfig; sourceTree = "<group>"; };
 		C97980F4224FE68800132BEC /* Identifier.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Identifier.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C97980F7224FE68800132BEC /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
 		C97980FD224FE68800132BEC /* IdentifierTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdentifierTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +91,8 @@
 			children = (
 				C979812C224FF07C00132BEC /* Debug.xcconfig */,
 				C979812D224FF07C00132BEC /* Release.xcconfig */,
+				C950E96522529A2500583754 /* Framework.xcconfig */,
+				C950E96622529BA500583754 /* Application.xcconfig */,
 			);
 			name = Configurations;
 			path = Carthage/Checkouts/xcconfigs;
@@ -249,39 +253,29 @@
 		};
 		C9798109224FE68800132BEC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C950E96522529A2500583754 /* Framework.xcconfig */;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = Sources/Identifier/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.mattrubin.$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
 		C979810A224FE68800132BEC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C950E96522529A2500583754 /* Framework.xcconfig */;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = Sources/Identifier/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = "me.mattrubin.$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
 		C979810C224FE68800132BEC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C950E96622529BA500583754 /* Application.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = Tests/IdentifierTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = "me.mattrubin.$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 			};
@@ -289,15 +283,9 @@
 		};
 		C979810D224FE68800132BEC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C950E96622529BA500583754 /* Application.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = Tests/IdentifierTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = "me.mattrubin.$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 			};

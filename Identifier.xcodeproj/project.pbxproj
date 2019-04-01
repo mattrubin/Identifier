@@ -253,6 +253,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = Sources/Identifier/Info.plist;
+				INSTALL_PATH = "@rpath";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.mattrubin.$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -265,6 +266,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = Sources/Identifier/Info.plist;
+				INSTALL_PATH = "@rpath";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.mattrubin.$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

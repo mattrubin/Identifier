@@ -14,7 +14,7 @@ let package = Package(
         .library(name: "Identifier", targets: ["Identifier"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/Quick/Nimble.git", .upToNextMajor(from: "8.0.0")),
+        .package(url: "https://github.com/Quick/Nimble.git", from: "8.0.0"),
     ],
     targets: [
         .target(name: "Identifier"),

@@ -17,10 +17,10 @@ jobs:
 
     - &spm
       stage: test
-      name: SPM @ Xcode 10.2 / Swift 5.0 / macOS
-      script: swift test --disable-automatic-resolution -Xswiftc -swift-version -Xswiftc 5
+      name: SPM @ Xcode 10.2 / macOS
+      script: swift test --disable-automatic-resolution
     - <<: *spm
-      name: SPM 5.0 / Swift 5.0 / Linux
+      name: SPM 5.0 / Linux
       os: linux
       language: generic
       env: SWIFT_VERSION=5.0 

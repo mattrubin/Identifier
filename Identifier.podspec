@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "Identifier"
-  spec.version      = "0.1.1"
+  spec.version      = "1.0.0"
   spec.summary      = "Unique, strongly-typed identifiers in Swift."
   spec.description  = "`Identifier` is a generic struct backed by a UUID, which can be specialized for the model type it identifies and provides unique, decentralized identity in a value type. It is Equatable, Hashable, and Codable, serializing to a simple UUID string."
   spec.homepage     = "https://github.com/mattrubin/Identifier"

@@ -37,7 +37,7 @@ struct Comment: Equatable, Codable {
 Add the following line to your [Cartfile][]:
 
 ````config
-github "mattrubin/Identifier" ~> 0.1
+github "mattrubin/Identifier" ~> 1.0
 ````
 
 Then run `carthage update Identifier` to install the latest version of the framework.
@@ -53,7 +53,7 @@ Be sure to check the Carthage README file for the latest instructions on [adding
 Add the following line to your [Podfile][]:
 
 ````ruby
-pod 'Identifier', '~> 0.1'
+pod 'Identifier', '~> 1.0'
 ````
 
 Identifier, like all pods written in Swift, can only be integrated as a framework. Make sure to add the line `use_frameworks!` to your Podfile or target to opt into frameworks instead of static libraries.
@@ -68,7 +68,7 @@ Then run `pod install` to install the latest version of the framework.
 Add the following line to the dependencies section of your [package manifest][Package.swift]:
 
 ```swift
-.package(url: "https://github.com/mattrubin/Identifier.git", from: "0.1.0"),
+.package(url: "https://github.com/mattrubin/Identifier.git", from: "1.0.0"),
 ```
 
 Then add `"Identifier"` to the dependencies array of any target which should be linked with this library 

@@ -17,32 +17,36 @@ jobs:
 
     - &spm
       stage: test
-      name: macOS / SPM 5.0 / Swift 5.0
-      script: swift test --disable-automatic-resolution -Xswiftc -swift-version -Xswiftc 5
+      name: SPM @ Xcode 10.2 / macOS
+      script: swift test --disable-automatic-resolution
     - <<: *spm
-      name: Linux / SPM 5.0 / Swift 5.0
+      name: SPM 5.0 / Linux
       os: linux
       language: generic
       env: SWIFT_VERSION=5.0 
       install: eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
 
     - &cocoapods
-      name: CocoaPods / pod lib lint
+      name: CocoaPods & Xcode 10.2 / pod lib lint
       script: pod lib lint
 
+    - &carthage
+      name: Carthage & Xcode 10.2 / carthage build --archive
+      script: carthage build --archive
+
     - &xcode
-      name: macOS / Xcode 10.2 / Swift 5.0
+      name: Xcode 10.2 / macOS
       xcode_workspace: Identifier.xcworkspace
       xcode_scheme: Identifier
       xcode_destination: 'platform=macOS'
     - <<: *xcode
-      name: iOS / Xcode 10.2 / Swift 5.0
+      name: Xcode 10.2 / iOS
       xcode_destination: 'OS=12.2,name=iPhone SE'
     - <<: *xcode
-      name: tvOS / Xcode 10.2 / Swift 5.0
+      name: Xcode 10.2 / tvOS
       xcode_destination: 'OS=12.2,name=Apple TV'
     - <<: *xcode
-      name: watchOS / Xcode 10.2 / Swift 5.0
+      name: Xcode 10.2 / watchOS
       xcode_destination: 'OS=5.2,name=Apple Watch Series 2 - 38mm'
       script: set -o pipefail && xcodebuild -workspace "$TRAVIS_XCODE_WORKSPACE" -scheme "$TRAVIS_XCODE_SCHEME" -destination "$TRAVIS_XCODE_DESTINATION" build | xcpretty
 

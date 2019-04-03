@@ -30,6 +30,10 @@ jobs:
       name: CocoaPods / pod lib lint
       script: pod lib lint
 
+    - &carthage
+      name: Carthage / carthage build --archive
+      script: carthage build --archive
+
     - &xcode
       name: macOS / Xcode 10.2 / Swift 5.0
       xcode_workspace: Identifier.xcworkspace

@@ -27,11 +27,11 @@ jobs:
       install: eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
 
     - &cocoapods
-      name: CocoaPods / Xcode 10.2 / pod lib lint
+      name: CocoaPods & Xcode 10.2 / pod lib lint
       script: pod lib lint
 
     - &carthage
-      name: Carthage / Xcode 10.2 / carthage build --archive
+      name: Carthage & Xcode 10.2 / carthage build --archive
       script: carthage build --archive
 
     - &xcode

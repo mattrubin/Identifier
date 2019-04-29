@@ -39,6 +39,18 @@ final class IdentifierTests: XCTestCase {
         XCTAssertNotEqual(third, fourth)
     }
 
+    // MARK: - String Convertible
+
+    func testDebugDescription() {
+        let first = Identifier<Int>(uuid: firstUUID)
+        let firstExpectedDebugDescription = "Identifier<Int>(uuid: B9212942-B5B9-4547-A994-375921769411)"
+        XCTAssertEqual(first.debugDescription, firstExpectedDebugDescription)
+
+        let second = Identifier<String>.random()
+        let secondExpectedDebugDescription = "Identifier<String>(uuid: " + second.uuid.uuidString + ")"
+        XCTAssertEqual(second.debugDescription, secondExpectedDebugDescription)
+    }
+
     // MARK: - Codable
 
     func testEncode() {

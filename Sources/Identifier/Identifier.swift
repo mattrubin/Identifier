@@ -12,6 +12,30 @@ public struct Identifier<T>: Equatable, Hashable {
     }
 }
 
+// MARK: - String Convertible
+
+extension Identifier: LosslessStringConvertible {
+    /// Instantiates an identifier from a string representation.
+    public init?(_ description: String) {
+        guard let uuid = UUID(uuidString: description) else {
+            return nil
+        }
+        self.init(uuid: uuid)
+    }
+
+    /// A string representation of this identifier.
+    public var description: String {
+        return uuid.uuidString
+    }
+}
+
+extension Identifier: CustomDebugStringConvertible {
+    /// A detailed string representation of this identifier, for use in debugging.
+    public var debugDescription: String {
+        return "Identifier<\(T.self)>(uuid: \(uuid))"
+    }
+}
+
 // MARK: - Codable
 
 extension Identifier: Codable {

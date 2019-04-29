@@ -6,6 +6,20 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		C9425DEB227555DC00EF93BD /* Lint Identifier */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = C9425DEE227555DD00EF93BD /* Build configuration list for PBXAggregateTarget "Lint Identifier" */;
+			buildPhases = (
+				C9425DEF227555EA00EF93BD /* Run SwiftLint */,
+			);
+			dependencies = (
+			);
+			name = "Lint Identifier";
+			productName = "Lint Identifier";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		C97980FE224FE68800132BEC /* Identifier.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97980F4224FE68800132BEC /* Identifier.framework */; };
 		C9798103224FE68800132BEC /* IdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9798102224FE68800132BEC /* IdentifierTests.swift */; };
@@ -151,6 +165,9 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Matt Rubin";
 				TargetAttributes = {
+					C9425DEB227555DC00EF93BD = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
 					C97980F3224FE68800132BEC = {
 						CreatedOnToolsVersion = 10.2;
 					};
@@ -173,9 +190,31 @@
 			targets = (
 				C97980F3224FE68800132BEC /* Identifier */,
 				C97980FC224FE68800132BEC /* IdentifierTests */,
+				C9425DEB227555DC00EF93BD /* Lint Identifier */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C9425DEF227555EA00EF93BD /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint is not installed. (https://github.com/realm/SwiftLint)\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C97980F0224FE68800132BEC /* Sources */ = {
@@ -205,18 +244,26 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		C9425DEC227555DD00EF93BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		C9425DED227555DD00EF93BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
 		C9798106224FE68800132BEC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C979812C224FF07C00132BEC /* Debug.xcconfig */;
 			buildSettings = {
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
@@ -232,14 +279,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C979812D224FF07C00132BEC /* Release.xcconfig */;
 			buildSettings = {
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
@@ -294,6 +336,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C9425DEE227555DD00EF93BD /* Build configuration list for PBXAggregateTarget "Lint Identifier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9425DEC227555DD00EF93BD /* Debug */,
+				C9425DED227555DD00EF93BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C97980EE224FE68800132BEC /* Build configuration list for PBXProject "Identifier" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

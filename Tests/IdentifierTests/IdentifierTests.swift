@@ -41,6 +41,36 @@ final class IdentifierTests: XCTestCase {
 
     // MARK: - String Convertible
 
+    func testInitWithDescription() {
+        let firstFromUUID = Identifier<Int>(uuid: firstUUID)
+        let firstDescription = "B9212942-B5B9-4547-A994-375921769411"
+        let firstFromDescription = Identifier<Int>(firstDescription)
+        XCTAssertEqual(firstFromDescription, firstFromUUID)
+
+        let secondRandom = Identifier<String>.random()
+        let secondDescription = secondRandom.uuid.uuidString
+        let secondFromDescription = Identifier<String>(secondDescription)
+        XCTAssertEqual(secondFromDescription, secondRandom)
+
+        let validDescription = UUID().uuidString
+        let validIdentifier = Identifier<Float>(validDescription)
+        XCTAssertNotNil(validIdentifier)
+
+        let invalidDescription = "12345"
+        let invalidIdentifier = Identifier<Float>(invalidDescription)
+        XCTAssertNil(invalidIdentifier)
+    }
+
+    func testDescription() {
+        let first = Identifier<Int>(uuid: firstUUID)
+        let firstExpectedDebugDescription = "B9212942-B5B9-4547-A994-375921769411"
+        XCTAssertEqual(first.description, firstExpectedDebugDescription)
+
+        let second = Identifier<String>.random()
+        let secondExpectedDebugDescription = second.uuid.uuidString
+        XCTAssertEqual(second.description, secondExpectedDebugDescription)
+    }
+
     func testDebugDescription() {
         let first = Identifier<Int>(uuid: firstUUID)
         let firstExpectedDebugDescription = "Identifier<Int>(uuid: B9212942-B5B9-4547-A994-375921769411)"

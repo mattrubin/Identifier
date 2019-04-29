@@ -14,6 +14,19 @@ public struct Identifier<T>: Equatable, Hashable {
 
 // MARK: - String Convertible
 
+extension Identifier: LosslessStringConvertible {
+    public init?(_ description: String) {
+        guard let uuid = UUID(uuidString: description) else {
+            return nil
+        }
+        self.init(uuid: uuid)
+    }
+
+    public var description: String {
+        return uuid.uuidString
+    }
+}
+
 extension Identifier: CustomDebugStringConvertible {
     public var debugDescription: String {
         return "Identifier<\(T.self)>(uuid: \(uuid))"

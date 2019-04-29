@@ -12,6 +12,14 @@ public struct Identifier<T>: Equatable, Hashable {
     }
 }
 
+// MARK: - String Convertible
+
+extension Identifier: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return "Identifier<\(T.self)>(uuid: \(uuid))"
+    }
+}
+
 // MARK: - Codable
 
 extension Identifier: Codable {

@@ -71,7 +71,7 @@ Add the following line to the dependencies section of your [package manifest][Pa
 .package(url: "https://github.com/mattrubin/Identifier.git", from: "1.1.0"),
 ```
 
-Then add `"Identifier"` to the dependencies array of any target which should be linked with this library 
+Then add `"Identifier"` to the dependencies array of any target which should be linked with this library.
 
 [SPM]: https://swift.org/package-manager/
 [Package.swift]: https://github.com/apple/swift-package-manager/tree/master/Documentation

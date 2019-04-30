@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.com/mattrubin/Identifier.svg?branch=develop)](https://travis-ci.com/mattrubin/Identifier)
 [![Codecov](https://img.shields.io/codecov/c/github/mattrubin/Identifier/develop.svg)](https://codecov.io/gh/mattrubin/Identifier)
 ![Swift 5.0](https://img.shields.io/badge/swift-5.0-orange.svg)
-![Available via Carthage, CocoaPods, or SPM](https://img.shields.io/badge/via-Carthage%20%7C%20CocoaPods%20%7C%20SPM-MediumSlateBlue.svg)
+[![Available via Carthage, CocoaPods, or SPM](https://img.shields.io/badge/via-Carthage%20%7C%20CocoaPods%20%7C%20SPM-MediumSlateBlue.svg)](#installation)
 ![Platforms: iOS, macOS, tvOS, watchOS, Linux](https://img.shields.io/badge/platforms-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20watchOS%20%7C%20Linux-blue.svg)
 [![MIT License](https://img.shields.io/badge/license-MIT-lightgray.svg)](LICENSE.md)
 
@@ -71,7 +71,7 @@ Add the following line to the dependencies section of your [package manifest][Pa
 .package(url: "https://github.com/mattrubin/Identifier.git", from: "1.1.0"),
 ```
 
-Then add `"Identifier"` to the dependencies array of any target which should be linked with this library 
+Then add `"Identifier"` to the dependencies array of any target which should be linked with this library.
 
 [SPM]: https://swift.org/package-manager/
 [Package.swift]: https://github.com/apple/swift-package-manager/tree/master/Documentation

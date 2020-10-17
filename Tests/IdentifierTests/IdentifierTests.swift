@@ -1,6 +1,8 @@
 import XCTest
 import Identifier
 
+// swiftlint:disable force_unwrapping
+
 let firstUUID = UUID(uuidString: "B9212942-B5B9-4547-A994-375921769411")!
 let secondUUID = UUID(uuidString: "1552BA9E-8378-489F-B6BC-E810973931E0")!
 

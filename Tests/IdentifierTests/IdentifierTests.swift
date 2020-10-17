@@ -1,6 +1,8 @@
 import XCTest
 import Identifier
 
+// swiftlint:disable force_unwrapping
+
 let firstUUID = UUID(uuidString: "B9212942-B5B9-4547-A994-375921769411")!
 let secondUUID = UUID(uuidString: "1552BA9E-8378-489F-B6BC-E810973931E0")!
 
@@ -97,8 +99,9 @@ final class IdentifierTests: XCTestCase {
         let json = "[\"3B46CDCE-A7D1-424A-AD2C-99FCD200F1A2\"]".data(using: .utf8)!
 
         let decoder = JSONDecoder()
-        XCTAssertEqual(try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: json).value,
-                       Identifier(uuid: uuid))
+        XCTAssertEqual(
+            try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: json).value,
+            Identifier(uuid: uuid))
 
         let emptyJSON = Data()
         XCTAssertThrowsError(

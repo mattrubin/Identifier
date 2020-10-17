@@ -1,7 +1,7 @@
 # Configuration for Travis (https://travis-ci.com)
 
 os: osx
-osx_image: xcode10.2
+osx_image: xcode11
 language: swift
 
 stages:
@@ -17,36 +17,36 @@ jobs:
 
     - &spm
       stage: test
-      name: SPM @ Xcode 10.2 / macOS
+      name: SPM @ Xcode 11 / macOS
       script: swift test --disable-automatic-resolution
     - <<: *spm
-      name: SPM 5.0 / Linux
+      name: SPM 5.1 / Linux
       os: linux
       language: generic
-      env: SWIFT_VERSION=5.0 
+      env: SWIFT_VERSION=5.1
       install: eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
 
     - &cocoapods
-      name: CocoaPods & Xcode 10.2 / pod lib lint
+      name: CocoaPods & Xcode 11 / pod lib lint
       script: pod lib lint
 
     - &carthage
-      name: Carthage & Xcode 10.2 / carthage build --archive
+      name: Carthage & Xcode 11 / carthage build --archive
       script: carthage build --archive
 
     - &xcode
-      name: Xcode 10.2 / macOS
+      name: Xcode 11 / macOS
       xcode_project: Identifier.xcodeproj
       xcode_scheme: Identifier
       xcode_destination: 'platform=macOS'
     - <<: *xcode
-      name: Xcode 10.2 / iOS
+      name: Xcode 11 / iOS
       xcode_destination: 'OS=12.2,name=iPhone SE'
     - <<: *xcode
-      name: Xcode 10.2 / tvOS
+      name: Xcode 11 / tvOS
       xcode_destination: 'OS=12.2,name=Apple TV'
     - <<: *xcode
-      name: Xcode 10.2 / watchOS
+      name: Xcode 11 / watchOS
       xcode_destination: 'OS=5.2,name=Apple Watch Series 2 - 38mm'
       script: set -o pipefail && xcodebuild -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "$TRAVIS_XCODE_DESTINATION" build | xcpretty
 

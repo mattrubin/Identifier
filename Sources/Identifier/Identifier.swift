@@ -8,7 +8,7 @@ public struct Identifier<T>: Equatable, Hashable {
     }
 
     public static func random() -> Identifier {
-        return self.init(uuid: UUID())
+        self.init(uuid: UUID())
     }
 }
 
@@ -25,14 +25,14 @@ extension Identifier: LosslessStringConvertible {
 
     /// A string representation of this identifier.
     public var description: String {
-        return uuid.uuidString
+        uuid.uuidString
     }
 }
 
 extension Identifier: CustomDebugStringConvertible {
     /// A detailed string representation of this identifier, for use in debugging.
     public var debugDescription: String {
-        return "Identifier<\(T.self)>(uuid: \(uuid))"
+        "Identifier<\(T.self)>(uuid: \(uuid))"
     }
 }
 

@@ -20,10 +20,10 @@ jobs:
       name: SPM @ Xcode 11 / macOS
       script: swift test --disable-automatic-resolution
     - <<: *spm
-      name: SPM 5.0 / Linux
+      name: SPM 5.1 / Linux
       os: linux
       language: generic
-      env: SWIFT_VERSION=5.0 
+      env: SWIFT_VERSION=5.1
       install: eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
 
     - &cocoapods

@@ -12,7 +12,7 @@ extension IdentifierTests {
         ("testEncode", testEncode),
         ("testEquality", testEquality),
         ("testInitWithDescription", testInitWithDescription),
-        ("testInitWithUUID", testInitWithUUID),
+        ("testInitWithRawValue", testInitWithRawValue),
         ("testRandomIdentifier", testRandomIdentifier),
     ]
 }

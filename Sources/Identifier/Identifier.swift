@@ -1,14 +1,14 @@
 import struct Foundation.UUID
 
-public struct Identifier<T>: Equatable, Hashable {
-    public let uuid: UUID
+public struct Identifier<T>: Equatable, Hashable, RawRepresentable {
+    public let rawValue: UUID
 
-    public init(uuid: UUID) {
-        self.uuid = uuid
+    public init(rawValue: UUID) {
+        self.rawValue = rawValue
     }
 
     public static func random() -> Identifier {
-        self.init(uuid: UUID())
+        self.init(rawValue: UUID())
     }
 }
 
@@ -20,19 +20,19 @@ extension Identifier: LosslessStringConvertible {
         guard let uuid = UUID(uuidString: description) else {
             return nil
         }
-        self.init(uuid: uuid)
+        self.init(rawValue: uuid)
     }
 
     /// A string representation of this identifier.
     public var description: String {
-        uuid.uuidString
+        rawValue.uuidString
     }
 }
 
 extension Identifier: CustomDebugStringConvertible {
     /// A detailed string representation of this identifier, for use in debugging.
     public var debugDescription: String {
-        "Identifier<\(T.self)>(uuid: \(uuid))"
+        "Identifier<\(T.self)>(rawValue: \(rawValue))"
     }
 }
 
@@ -40,10 +40,10 @@ extension Identifier: CustomDebugStringConvertible {
 
 extension Identifier: Codable {
     public init(from decoder: Decoder) throws {
-        uuid = try UUID(from: decoder)
+        rawValue = try UUID(from: decoder)
     }
 
     public func encode(to encoder: Encoder) throws {
-        try uuid.encode(to: encoder)
+        try rawValue.encode(to: encoder)
     }
 }

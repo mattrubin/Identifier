@@ -7,10 +7,10 @@ let firstUUID = UUID(uuidString: "B9212942-B5B9-4547-A994-375921769411")!
 let secondUUID = UUID(uuidString: "1552BA9E-8378-489F-B6BC-E810973931E0")!
 
 final class IdentifierTests: XCTestCase {
-    func testInitWithUUID() {
+    func testInitWithRawValue() {
         let uuid = UUID()
-        let identifier = Identifier<Void>(uuid: uuid)
-        XCTAssertEqual(uuid, identifier.uuid)
+        let identifier = Identifier<Void>(rawValue: uuid)
+        XCTAssertEqual(uuid, identifier.rawValue)
     }
 
     func testRandomIdentifier() {
@@ -21,11 +21,11 @@ final class IdentifierTests: XCTestCase {
     }
 
     func testEquality() {
-        let first = Identifier<Void>(uuid: firstUUID)
+        let first = Identifier<Void>(rawValue: firstUUID)
         XCTAssertEqual(first, first)
 
-        let second = Identifier<Void>(uuid: secondUUID)
-        let secondAgain = Identifier<Void>(uuid: secondUUID)
+        let second = Identifier<Void>(rawValue: secondUUID)
+        let secondAgain = Identifier<Void>(rawValue: secondUUID)
         XCTAssertEqual(second, secondAgain)
 
         XCTAssertNotEqual(first, second)
@@ -43,13 +43,13 @@ final class IdentifierTests: XCTestCase {
     // MARK: - String Convertible
 
     func testInitWithDescription() {
-        let firstFromUUID = Identifier<Int>(uuid: firstUUID)
+        let firstFromUUID = Identifier<Int>(rawValue: firstUUID)
         let firstDescription = "B9212942-B5B9-4547-A994-375921769411"
         let firstFromDescription = Identifier<Int>(firstDescription)
         XCTAssertEqual(firstFromDescription, firstFromUUID)
 
         let secondRandom = Identifier<String>.random()
-        let secondDescription = secondRandom.uuid.uuidString
+        let secondDescription = secondRandom.rawValue.uuidString
         let secondFromDescription = Identifier<String>(secondDescription)
         XCTAssertEqual(secondFromDescription, secondRandom)
 
@@ -63,22 +63,22 @@ final class IdentifierTests: XCTestCase {
     }
 
     func testDescription() {
-        let first = Identifier<Int>(uuid: firstUUID)
+        let first = Identifier<Int>(rawValue: firstUUID)
         let firstExpectedDebugDescription = "B9212942-B5B9-4547-A994-375921769411"
         XCTAssertEqual(first.description, firstExpectedDebugDescription)
 
         let second = Identifier<String>.random()
-        let secondExpectedDebugDescription = second.uuid.uuidString
+        let secondExpectedDebugDescription = second.rawValue.uuidString
         XCTAssertEqual(second.description, secondExpectedDebugDescription)
     }
 
     func testDebugDescription() {
-        let first = Identifier<Int>(uuid: firstUUID)
-        let firstExpectedDebugDescription = "Identifier<Int>(uuid: B9212942-B5B9-4547-A994-375921769411)"
+        let first = Identifier<Int>(rawValue: firstUUID)
+        let firstExpectedDebugDescription = "Identifier<Int>(rawValue: B9212942-B5B9-4547-A994-375921769411)"
         XCTAssertEqual(first.debugDescription, firstExpectedDebugDescription)
 
         let second = Identifier<String>.random()
-        let secondExpectedDebugDescription = "Identifier<String>(uuid: " + second.uuid.uuidString + ")"
+        let secondExpectedDebugDescription = "Identifier<String>(rawValue: " + second.rawValue.uuidString + ")"
         XCTAssertEqual(second.debugDescription, secondExpectedDebugDescription)
     }
 
@@ -88,7 +88,7 @@ final class IdentifierTests: XCTestCase {
         let uuid = UUID(uuidString: "a80c0fdf-c1fe-4023-8ba3-dd1ad9b3cb94")!
         let expectedJSON = "[\"A80C0FDF-C1FE-4023-8BA3-DD1AD9B3CB94\"]".data(using: .utf8)!
 
-        let identifier = Identifier<Void>(uuid: uuid)
+        let identifier = Identifier<Void>(rawValue: uuid)
 
         let encoder = JSONEncoder()
         XCTAssertEqual(try encoder.encode(JSONFragmentEncodingWrapper(identifier)), expectedJSON)
@@ -101,7 +101,7 @@ final class IdentifierTests: XCTestCase {
         let decoder = JSONDecoder()
         XCTAssertEqual(
             try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: json).value,
-            Identifier(uuid: uuid))
+            Identifier(rawValue: uuid))
 
         let emptyJSON = Data()
         XCTAssertThrowsError(

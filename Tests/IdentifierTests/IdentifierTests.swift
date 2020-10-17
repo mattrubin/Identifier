@@ -1,5 +1,4 @@
 import XCTest
-import Nimble
 import Identifier
 
 let firstUUID = UUID(uuidString: "B9212942-B5B9-4547-A994-375921769411")!
@@ -90,7 +89,7 @@ final class IdentifierTests: XCTestCase {
         let identifier = Identifier<Void>(uuid: uuid)
 
         let encoder = JSONEncoder()
-        expect(try encoder.encode(JSONFragmentEncodingWrapper(identifier))) == expectedJSON
+        XCTAssertEqual(try encoder.encode(JSONFragmentEncodingWrapper(identifier)), expectedJSON)
     }
 
     func testDecode() {
@@ -98,16 +97,16 @@ final class IdentifierTests: XCTestCase {
         let json = "[\"3B46CDCE-A7D1-424A-AD2C-99FCD200F1A2\"]".data(using: .utf8)!
 
         let decoder = JSONDecoder()
-        expect(try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: json).value)
-            == Identifier(uuid: uuid)
+        XCTAssertEqual(try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: json).value,
+                       Identifier(uuid: uuid))
 
         let emptyJSON = Data()
-        expect(try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: emptyJSON).value)
-            .to(throwError())
+        XCTAssertThrowsError(
+            try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: emptyJSON).value)
 
         let badStringJSON = "[\"3B46CDCE\"]".data(using: .utf8)!
-        expect(try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: badStringJSON).value)
-            .to(throwError())
+        XCTAssertThrowsError(
+            try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: badStringJSON).value)
     }
 }
 

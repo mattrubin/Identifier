@@ -13,12 +13,9 @@ let package = Package(
     products: [
         .library(name: "Identifier", targets: ["Identifier"]),
     ],
-    dependencies: [
-        .package(url: "https://github.com/Quick/Nimble.git", from: "8.0.0"),
-    ],
     targets: [
         .target(name: "Identifier"),
-        .testTarget(name: "IdentifierTests", dependencies: ["Identifier", "Nimble"]),
+        .testTarget(name: "IdentifierTests", dependencies: ["Identifier"]),
     ],
     swiftLanguageVersions: [.v5]
 )

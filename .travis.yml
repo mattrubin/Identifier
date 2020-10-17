@@ -36,7 +36,7 @@ jobs:
 
     - &xcode
       name: Xcode 10.2 / macOS
-      xcode_workspace: Identifier.xcworkspace
+      xcode_project: Identifier.xcodeproj
       xcode_scheme: Identifier
       xcode_destination: 'platform=macOS'
     - <<: *xcode
@@ -48,7 +48,7 @@ jobs:
     - <<: *xcode
       name: Xcode 10.2 / watchOS
       xcode_destination: 'OS=5.2,name=Apple Watch Series 2 - 38mm'
-      script: set -o pipefail && xcodebuild -workspace "$TRAVIS_XCODE_WORKSPACE" -scheme "$TRAVIS_XCODE_SCHEME" -destination "$TRAVIS_XCODE_DESTINATION" build | xcpretty
+      script: set -o pipefail && xcodebuild -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "$TRAVIS_XCODE_DESTINATION" build | xcpretty
 
     - name: Gather test coverage
       xcode_project: Identifier.xcodeproj

@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "Identifier",
     platforms: [
-        .iOS(.v8),
+        .iOS(.v9),
         .macOS(.v10_10),
         .tvOS(.v9),
         .watchOS(.v2),
@@ -13,12 +13,9 @@ let package = Package(
     products: [
         .library(name: "Identifier", targets: ["Identifier"]),
     ],
-    dependencies: [
-        .package(url: "https://github.com/Quick/Nimble.git", from: "8.0.0"),
-    ],
     targets: [
         .target(name: "Identifier"),
-        .testTarget(name: "IdentifierTests", dependencies: ["Identifier", "Nimble"]),
+        .testTarget(name: "IdentifierTests", dependencies: ["Identifier"]),
     ],
     swiftLanguageVersions: [.v5]
 )

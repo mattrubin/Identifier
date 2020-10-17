@@ -95,8 +95,5 @@ opt_in_rules:
   - xct_specific_matcher
   - yoda_condition
 
-line_length:
-  ignores_function_declarations: true
-
 trailing_comma:
   mandatory_comma: true

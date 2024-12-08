@@ -116,7 +116,6 @@ final class IdentifierTests: XCTestCase {
     // MARK: - Sendable
 
     /// This test will fail to compile if `Identifier` does not conform to `Sendable`.
-    @available(macOS 10.15.0, *)
     func testSendable() async {
         actor IdentifierProducer {
             func makeIdentifier<T>() -> Identifier<T> {

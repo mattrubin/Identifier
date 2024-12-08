@@ -5,11 +5,11 @@ import PackageDescription
 let package = Package(
     name: "Identifier",
     platforms: [
-        .iOS(.v13),
-        .macOS(.v10_13),
-        .tvOS(.v13),
+        .iOS(.v15),
+        .macOS(.v11),
+        .tvOS(.v15),
         .visionOS(.v1),
-        .watchOS(.v4),
+        .watchOS(.v8),
     ],
     products: [
         .library(name: "Identifier", targets: ["Identifier"]),

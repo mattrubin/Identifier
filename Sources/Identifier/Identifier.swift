@@ -7,7 +7,7 @@ public struct Identifier<T>: Equatable, Hashable, RawRepresentable {
         self.rawValue = rawValue
     }
 
-    public static func random() -> Identifier {
+    public static func random() -> Self {
         self.init(rawValue: UUID())
     }
 }

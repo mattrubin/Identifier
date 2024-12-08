@@ -1,10 +1,11 @@
 import XCTest
+
 import Identifier
 
 // swiftlint:disable force_unwrapping
-
 let firstUUID = UUID(uuidString: "B9212942-B5B9-4547-A994-375921769411")!
 let secondUUID = UUID(uuidString: "1552BA9E-8378-489F-B6BC-E810973931E0")!
+// swiftlint:enable force_unwrapping
 
 final class IdentifierTests: XCTestCase {
     func testInitWithRawValue() {
@@ -85,8 +86,8 @@ final class IdentifierTests: XCTestCase {
     // MARK: - Codable
 
     func testEncode() {
-        let uuid = UUID(uuidString: "a80c0fdf-c1fe-4023-8ba3-dd1ad9b3cb94")!
-        let expectedJSON = "[\"A80C0FDF-C1FE-4023-8BA3-DD1AD9B3CB94\"]".data(using: .utf8)!
+        let uuid = UUID(uuidString: "a80c0fdf-c1fe-4023-8ba3-dd1ad9b3cb94")! // swiftlint:disable:this force_unwrapping
+        let expectedJSON = Data("[\"A80C0FDF-C1FE-4023-8BA3-DD1AD9B3CB94\"]".utf8)
 
         let identifier = Identifier<Void>(rawValue: uuid)
 
@@ -95,8 +96,8 @@ final class IdentifierTests: XCTestCase {
     }
 
     func testDecode() {
-        let uuid = UUID(uuidString: "3b46cdce-a7d1-424a-ad2c-99fcd200f1a2")!
-        let json = "[\"3B46CDCE-A7D1-424A-AD2C-99FCD200F1A2\"]".data(using: .utf8)!
+        let uuid = UUID(uuidString: "3b46cdce-a7d1-424a-ad2c-99fcd200f1a2")! // swiftlint:disable:this force_unwrapping
+        let json = Data("[\"3B46CDCE-A7D1-424A-AD2C-99FCD200F1A2\"]".utf8)
 
         let decoder = JSONDecoder()
         XCTAssertEqual(
@@ -107,7 +108,7 @@ final class IdentifierTests: XCTestCase {
         XCTAssertThrowsError(
             try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: emptyJSON).value)
 
-        let badStringJSON = "[\"3B46CDCE\"]".data(using: .utf8)!
+        let badStringJSON = Data("[\"3B46CDCE\"]".utf8)
         XCTAssertThrowsError(
             try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: badStringJSON).value)
     }

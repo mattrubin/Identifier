@@ -40,7 +40,7 @@ jobs:
       - name: "Build and test"
         run: |
           set -o pipefail
-          xcodebuild test -project "Identifier.xcodeproj" -scheme "Identifier" -destination "id=${{ steps.prepare-simulator.outputs.destination-id }}" | xcpretty -c
+          xcodebuild test -scheme "Identifier" -destination "id=${{ steps.prepare-simulator.outputs.destination-id }}" | xcpretty -c
       - uses: sersoft-gmbh/swift-coverage-action@v4
         with:
           target-name-filter: ^Identifier$
@@ -83,4 +83,4 @@ jobs:
       - name: "Build"
         run: |
           set -o pipefail
-          xcodebuild build -project "Identifier.xcodeproj" -scheme "Identifier" -destination "id=${{ steps.prepare-simulator.outputs.destination-id }}" | xcpretty -c
+          xcodebuild build -scheme "Identifier" -destination "id=${{ steps.prepare-simulator.outputs.destination-id }}" | xcpretty -c

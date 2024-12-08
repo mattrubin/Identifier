@@ -1,6 +1,6 @@
 import struct Foundation.UUID
 
-public struct Identifier<T>: Equatable, Hashable, RawRepresentable {
+public struct Identifier<T>: Equatable, Hashable, RawRepresentable, Sendable {
     public let rawValue: UUID
 
     public init(rawValue: UUID) {

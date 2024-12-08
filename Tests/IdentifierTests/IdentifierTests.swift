@@ -112,6 +112,23 @@ final class IdentifierTests: XCTestCase {
         XCTAssertThrowsError(
             try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: badStringJSON).value)
     }
+
+    // MARK: - Sendable
+
+    /// This test will fail to compile if `Identifier` does not conform to `Sendable`.
+    @available(macOS 10.15.0, *)
+    func testSendable() async {
+        actor IdentifierProducer {
+            func makeIdentifier<T>() -> Identifier<T> {
+                Identifier.random()
+            }
+        }
+
+        let producer = IdentifierProducer()
+        let identifier: Identifier<Void> = await producer.makeIdentifier()
+
+        XCTAssertEqual(identifier, identifier)
+    }
 }
 
 // This wrapper is necessary because JSONEncoder currently can't handle data that encodes to a top-level JSON fragment.

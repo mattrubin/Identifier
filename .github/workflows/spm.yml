@@ -1,0 +1,22 @@
+name: SPM
+
+on:
+  push:
+  pull_request:
+    branches: [main]
+
+jobs:
+  spm:
+    name: "Xcode ${{ matrix.env.xcode }}"
+    runs-on: macOS-14
+    strategy:
+      matrix:
+        env:
+          - xcode: 16.1
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Select Xcode ${{ matrix.env.xcode }}"
+        uses: ./.github/actions/xcode-select
+        with:
+          version: ${{ matrix.env.xcode }}
+      - run: swift test

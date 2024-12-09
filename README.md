@@ -3,7 +3,7 @@
 
 [![Codecov](https://img.shields.io/codecov/c/github/mattrubin/Identifier/develop.svg)](https://codecov.io/gh/mattrubin/Identifier)
 ![Swift 5.0](https://img.shields.io/badge/swift-5.0-orange.svg)
-[![Available via Carthage or SPM](https://img.shields.io/badge/via-Carthage%20%7C%20SPM-MediumSlateBlue.svg)](#installation)
+[![Available via SPM](https://img.shields.io/badge/via-SPM-MediumSlateBlue.svg)](#installation)
 ![Platforms: iOS, macOS, tvOS, watchOS, Linux](https://img.shields.io/badge/platforms-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20watchOS%20%7C%20Linux-blue.svg)
 [![MIT License](https://img.shields.io/badge/license-MIT-lightgray.svg)](LICENSE.md)
 
@@ -30,22 +30,6 @@ struct Comment: Equatable, Codable {
 
 
 ## Installation
-
-### [Carthage][]
-
-Add the following line to your [Cartfile][]:
-
-````config
-github "mattrubin/Identifier" ~> 1.1
-````
-
-Then run `carthage update Identifier` to install the latest version of the framework.
-
-Be sure to check the Carthage README file for the latest instructions on [adding frameworks to an application][carthage-instructions].
-
-[Carthage]: https://github.com/Carthage/Carthage
-[Cartfile]: https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile
-[carthage-instructions]: https://github.com/Carthage/Carthage/blob/master/README.md#adding-frameworks-to-an-application
 
 ### [SPM][]
 

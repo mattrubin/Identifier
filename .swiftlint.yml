@@ -2,7 +2,6 @@
 
 excluded:
   - .build
-  - Carthage
   - Tests/LinuxMain.swift
   - Tests/IdentifierTests/XCTestManifests.swift
 

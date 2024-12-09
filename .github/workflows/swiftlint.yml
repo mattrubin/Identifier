@@ -1,0 +1,26 @@
+name: SwiftLint
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: "Lint"
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/realm/swiftlint:latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Lint"
+        run: swiftlint lint --strict --reporter github-actions-logging
+  analyze:
+    name: "Analyze"
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo xcodes select 16.1
+      - run: brew install swiftlint
+      - run: |
+          xcodebuild -scheme Identifier -destination "name=My Mac" > xcodebuild.log
+          swiftlint analyze --strict --reporter github-actions-logging --compiler-log-path xcodebuild.log

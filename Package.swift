@@ -15,7 +15,7 @@ let package = Package(
         .library(name: "Identifier", targets: ["Identifier"]),
     ],
     targets: [
-        .target(name: "Identifier", exclude: ["Info.plist"]),
-        .testTarget(name: "IdentifierTests", dependencies: ["Identifier"], exclude: ["Info.plist"]),
+        .target(name: "Identifier"),
+        .testTarget(name: "IdentifierTests", dependencies: ["Identifier"]),
     ]
 )

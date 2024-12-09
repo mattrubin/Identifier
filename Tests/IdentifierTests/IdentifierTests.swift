@@ -1,121 +1,136 @@
-import XCTest
+import Foundation
+import Testing
 
 import Identifier
 
-// swiftlint:disable force_unwrapping
-let firstUUID = UUID(uuidString: "B9212942-B5B9-4547-A994-375921769411")!
-let secondUUID = UUID(uuidString: "1552BA9E-8378-489F-B6BC-E810973931E0")!
-// swiftlint:enable force_unwrapping
+struct IdentifierTests {
+    let firstUUID: UUID
+    let secondUUID: UUID
 
-final class IdentifierTests: XCTestCase {
+    init() throws {
+        firstUUID = try #require(UUID(uuidString: "B9212942-B5B9-4547-A994-375921769411"))
+        secondUUID = try #require(UUID(uuidString: "1552BA9E-8378-489F-B6BC-E810973931E0"))
+    }
+
+    @Test
     func testInitWithRawValue() {
         let uuid = UUID()
         let identifier = Identifier<Void>(rawValue: uuid)
-        XCTAssertEqual(uuid, identifier.rawValue)
+        #expect(uuid == identifier.rawValue)
     }
 
+    @Test
     func testRandomIdentifier() {
         // Ensure that `.random()` creates a different unique identifier each time it is called.
         let first = Identifier<Void>.random()
         let second = Identifier<Void>.random()
-        XCTAssertNotEqual(first, second)
+        #expect(first != second)
     }
 
+    @Test
     func testEquality() {
         let first = Identifier<Void>(rawValue: firstUUID)
-        XCTAssertEqual(first, first)
+        #expect(first == first) // swiftlint:disable:this identical_operands
 
         let second = Identifier<Void>(rawValue: secondUUID)
         let secondAgain = Identifier<Void>(rawValue: secondUUID)
-        XCTAssertEqual(second, secondAgain)
+        #expect(second == secondAgain)
 
-        XCTAssertNotEqual(first, second)
-        XCTAssertNotEqual(first, secondAgain)
+        #expect(first != second)
+        #expect(first != secondAgain)
 
         let third = Identifier<Void>.random()
-        XCTAssertEqual(third, third)
+        #expect(third == third) // swiftlint:disable:this identical_operands
 
         let fourth = Identifier<Void>.random()
-        XCTAssertEqual(fourth, fourth)
+        #expect(fourth == fourth) // swiftlint:disable:this identical_operands
 
-        XCTAssertNotEqual(third, fourth)
+        #expect(third != fourth)
     }
 
     // MARK: - String Convertible
 
+    @Test
     func testInitWithDescription() {
         let firstFromUUID = Identifier<Int>(rawValue: firstUUID)
         let firstDescription = "B9212942-B5B9-4547-A994-375921769411"
         let firstFromDescription = Identifier<Int>(firstDescription)
-        XCTAssertEqual(firstFromDescription, firstFromUUID)
+        #expect(firstFromDescription == firstFromUUID)
 
         let secondRandom = Identifier<String>.random()
         let secondDescription = secondRandom.rawValue.uuidString
         let secondFromDescription = Identifier<String>(secondDescription)
-        XCTAssertEqual(secondFromDescription, secondRandom)
+        #expect(secondFromDescription == secondRandom)
 
         let validDescription = UUID().uuidString
         let validIdentifier = Identifier<Float>(validDescription)
-        XCTAssertNotNil(validIdentifier)
+        #expect(validIdentifier != nil)
 
         let invalidDescription = "12345"
         let invalidIdentifier = Identifier<Float>(invalidDescription)
-        XCTAssertNil(invalidIdentifier)
+        #expect(invalidIdentifier == nil)
     }
 
+    @Test
     func testDescription() {
         let first = Identifier<Int>(rawValue: firstUUID)
         let firstExpectedDebugDescription = "B9212942-B5B9-4547-A994-375921769411"
-        XCTAssertEqual(first.description, firstExpectedDebugDescription)
+        #expect(first.description == firstExpectedDebugDescription)
 
         let second = Identifier<String>.random()
         let secondExpectedDebugDescription = second.rawValue.uuidString
-        XCTAssertEqual(second.description, secondExpectedDebugDescription)
+        #expect(second.description == secondExpectedDebugDescription)
     }
 
+    @Test
     func testDebugDescription() {
         let first = Identifier<Int>(rawValue: firstUUID)
         let firstExpectedDebugDescription = "Identifier<Int>(rawValue: B9212942-B5B9-4547-A994-375921769411)"
-        XCTAssertEqual(first.debugDescription, firstExpectedDebugDescription)
+        #expect(first.debugDescription == firstExpectedDebugDescription)
 
         let second = Identifier<String>.random()
         let secondExpectedDebugDescription = "Identifier<String>(rawValue: " + second.rawValue.uuidString + ")"
-        XCTAssertEqual(second.debugDescription, secondExpectedDebugDescription)
+        #expect(second.debugDescription == secondExpectedDebugDescription)
     }
 
     // MARK: - Codable
 
-    func testEncode() {
-        let uuid = UUID(uuidString: "a80c0fdf-c1fe-4023-8ba3-dd1ad9b3cb94")! // swiftlint:disable:this force_unwrapping
+    @Test
+    func testEncode() throws {
+        let uuid = try #require(UUID(uuidString: "a80c0fdf-c1fe-4023-8ba3-dd1ad9b3cb94"))
         let expectedJSON = Data("[\"A80C0FDF-C1FE-4023-8BA3-DD1AD9B3CB94\"]".utf8)
 
         let identifier = Identifier<Void>(rawValue: uuid)
 
         let encoder = JSONEncoder()
-        XCTAssertEqual(try encoder.encode(JSONFragmentEncodingWrapper(identifier)), expectedJSON)
+        #expect(try encoder.encode(JSONFragmentEncodingWrapper(identifier)) == expectedJSON)
     }
 
-    func testDecode() {
-        let uuid = UUID(uuidString: "3b46cdce-a7d1-424a-ad2c-99fcd200f1a2")! // swiftlint:disable:this force_unwrapping
+    @Test
+    func testDecode() throws {
+        let uuid = try #require(UUID(uuidString: "3b46cdce-a7d1-424a-ad2c-99fcd200f1a2"))
         let json = Data("[\"3B46CDCE-A7D1-424A-AD2C-99FCD200F1A2\"]".utf8)
 
         let decoder = JSONDecoder()
-        XCTAssertEqual(
-            try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: json).value,
+        #expect(
+            try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: json).value ==
             Identifier(rawValue: uuid))
 
         let emptyJSON = Data()
-        XCTAssertThrowsError(
-            try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: emptyJSON).value)
+        #expect(throws: DecodingError.self) {
+            try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: emptyJSON).value
+        }
 
         let badStringJSON = Data("[\"3B46CDCE\"]".utf8)
-        XCTAssertThrowsError(
-            try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: badStringJSON).value)
+        #expect(throws: DecodingError.self) {
+            try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: badStringJSON).value
+        }
     }
 
     // MARK: - Sendable
 
     /// This test will fail to compile if `Identifier` does not conform to `Sendable`.
+    @Test
     func testSendable() async {
         actor IdentifierProducer {
             func makeIdentifier<T>() -> Identifier<T> {
@@ -126,7 +141,7 @@ final class IdentifierTests: XCTestCase {
         let producer = IdentifierProducer()
         let identifier: Identifier<Void> = await producer.makeIdentifier()
 
-        XCTAssertEqual(identifier, identifier)
+        #expect(identifier == identifier) // swiftlint:disable:this identical_operands
     }
 }
 

@@ -2,8 +2,6 @@
 
 excluded:
   - .build
-  - Tests/LinuxMain.swift
-  - Tests/IdentifierTests/XCTestManifests.swift
 
 analyzer_rules:
   - capture_variable

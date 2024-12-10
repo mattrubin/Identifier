@@ -1,9 +1,9 @@
 name: Xcode
 
 on:
-  push:
   pull_request:
-    branches: [main]
+  push:
+    branches: [develop, release]
 
 jobs:
   xcode:

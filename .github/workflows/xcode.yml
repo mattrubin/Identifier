@@ -38,8 +38,6 @@ jobs:
             device: "Apple Vision Pro"
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
       - name: "Select Xcode ${{ matrix.env.xcode }}"
         uses: ./.github/actions/xcode-select
         with:
@@ -56,9 +54,7 @@ jobs:
           runtime: ${{ matrix.env.runtime }}
           device: ${{ matrix.env.device }}
       - name: "Build and test"
-        run: |
-          set -o pipefail
-          xcodebuild test -scheme "Identifier" -destination "id=${{ steps.prepare-simulator.outputs.destination-id }}" | xcpretty -c
+        run: xcodebuild test -scheme "Identifier" -destination "id=${{ steps.prepare-simulator.outputs.destination-id }}"
       - uses: sersoft-gmbh/swift-coverage-action@v4
         with:
           target-name-filter: ^Identifier$
@@ -76,16 +72,12 @@ jobs:
           - "16.1"
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
       - name: "Select Xcode ${{ matrix.xcode }}"
         uses: ./.github/actions/xcode-select
         with:
           version: ${{ matrix.xcode }}
       - name: "Build and test"
-        run: |
-          set -o pipefail
-          xcodebuild test -scheme "Identifier" -destination "name=My Mac" | xcpretty -c
+        run: xcodebuild test -scheme "Identifier" -destination "name=My Mac"
       - uses: sersoft-gmbh/swift-coverage-action@v4
         with:
           target-name-filter: ^Identifier$

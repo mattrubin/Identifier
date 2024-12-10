@@ -1,13 +1,13 @@
 import struct Foundation.UUID
 
-public struct Identifier<T>: Equatable, Hashable, RawRepresentable {
+public struct Identifier<T>: Equatable, Hashable, RawRepresentable, Sendable {
     public let rawValue: UUID
 
     public init(rawValue: UUID) {
         self.rawValue = rawValue
     }
 
-    public static func random() -> Identifier {
+    public static func random() -> Self {
         self.init(rawValue: UUID())
     }
 }

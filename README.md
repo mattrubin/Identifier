@@ -1,13 +1,14 @@
 # Identifier
 ### Unique, strongly-typed identifiers in Swift.
 
-[![Codecov](https://img.shields.io/codecov/c/github/mattrubin/Identifier/develop.svg)](https://codecov.io/gh/mattrubin/Identifier)
-![Swift 5.0](https://img.shields.io/badge/swift-5.0-orange.svg)
-[![Available via SPM](https://img.shields.io/badge/via-SPM-MediumSlateBlue.svg)](#installation)
-![Platforms: iOS, macOS, tvOS, watchOS, Linux](https://img.shields.io/badge/platforms-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20watchOS%20%7C%20Linux-blue.svg)
+[![Xcode CI status](https://github.com/mattrubin/Identifier/actions/workflows/xcode.yml/badge.svg)](https://github.com/mattrubin/Identifier/actions/workflows/xcode.yml)
+[![SPM CI status](https://github.com/mattrubin/Identifier/actions/workflows/spm.yml/badge.svg)](https://github.com/mattrubin/Identifier/actions/workflows/spm.yml)
+[![Code Coverage](https://img.shields.io/codecov/c/github/mattrubin/Identifier/develop.svg)](https://codecov.io/gh/mattrubin/Identifier)
+![Swift 6.0](https://img.shields.io/badge/swift-6.0-orange.svg)
+![Platforms: iOS, macOS, tvOS, visionOS, watchOS, Linux](https://img.shields.io/badge/platforms-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20visionOS%20%7C%20watchOS%20%7C%20Linux-blue.svg)
 [![MIT License](https://img.shields.io/badge/license-MIT-lightgray.svg)](LICENSE.md)
 
-`Identifier` is a generic struct backed by a UUID, which can be specialized for the model type it identifies and provides unique, decentralized identity in a value type. It is Equatable, Hashable, and Codable, serializing to a simple UUID string.
+`Identifier` is a generic struct backed by a UUID, which can be specialized for the model type it identifies and provides unique, decentralized identity in a value type. It is Equatable, Hashable, Sendable, and Codable, serializing to a simple UUID string.
 
 Instead of using string identifiers in your models:
 ```swift
@@ -18,6 +19,7 @@ struct Comment: Equatable, Codable {
     let date: Date
 }
 ```
+
 You can use typed identifiers, which help ensure an ID for a model of one type is never accidentally used in place of another:
 ```swift
 struct Comment: Equatable, Codable {
@@ -42,7 +44,7 @@ Add the following line to the dependencies section of your [package manifest][Pa
 Then add `"Identifier"` to the dependencies array of any target which should be linked with this library.
 
 [SPM]: https://swift.org/package-manager/
-[Package.swift]: https://github.com/apple/swift-package-manager/tree/master/Documentation
+[Package.swift]: https://github.com/swiftlang/swift-package-manager/tree/main/Documentation
 
 
 ## License

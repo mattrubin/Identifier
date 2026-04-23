@@ -10,6 +10,7 @@ jobs:
     name: "Xcode ${{ matrix.env.xcode }}, ${{ matrix.env.runtime }}, ${{ matrix.env.device }}"
     runs-on: macOS-26
     strategy:
+      fail-fast: false
       matrix:
         env:
           - xcode: 26.4
@@ -67,6 +68,7 @@ jobs:
     name: "Xcode ${{ matrix.xcode }}, macOS 26"
     runs-on: macOS-26
     strategy:
+      fail-fast: false
       matrix:
         xcode:
           - "26.4"

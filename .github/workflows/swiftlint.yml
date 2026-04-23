@@ -18,7 +18,9 @@ jobs:
     runs-on: macOS-26
     steps:
       - uses: actions/checkout@v6
-      - run: sudo xcodes select 26.4
+      - uses: ./.github/actions/xcode-select
+        with:
+          version: "26.4"
       - run: brew install swiftlint
       - run: xcodebuild -scheme Identifier -destination "name=My Mac" > xcodebuild.log
       - run: swiftlint analyze --strict --reporter github-actions-logging --compiler-log-path xcodebuild.log

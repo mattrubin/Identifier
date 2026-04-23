@@ -35,7 +35,7 @@ jobs:
             runtime: "visionOS 26.4"
             device: "Apple Vision Pro"
           - xcode: 26.4
-            runtime: "visionOS 1.0"
+            runtime: "visionOS 2.0"
             device: "Apple Vision Pro"
     steps:
       - uses: actions/checkout@v6

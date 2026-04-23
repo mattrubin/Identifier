@@ -8,12 +8,12 @@ on:
 jobs:
   macOS:
     name: "macOS, Xcode ${{ matrix.xcode }}"
-    runs-on: macOS-14
+    runs-on: macOS-26
     strategy:
       fail-fast: false
       matrix:
         xcode:
-          - "16.1"
+          - "26.4"
     steps:
       - uses: actions/checkout@v6
       - name: "Select Xcode ${{ matrix.xcode }}"

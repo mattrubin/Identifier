@@ -12,8 +12,7 @@ jobs:
       image: ghcr.io/realm/swiftlint:latest
     steps:
       - uses: actions/checkout@v6
-      - name: "Lint"
-        run: swiftlint lint --strict --reporter github-actions-logging
+      - run: swiftlint lint --strict --reporter github-actions-logging
   analyze:
     name: "Analyze"
     runs-on: macOS-26
@@ -21,7 +20,5 @@ jobs:
       - uses: actions/checkout@v6
       - run: sudo xcodes select 26.4
       - run: brew install swiftlint
-      - name: "Build and Analyze"
-        run: |
-          xcodebuild -scheme Identifier -destination "name=My Mac" > xcodebuild.log
-          swiftlint analyze --strict --reporter github-actions-logging --compiler-log-path xcodebuild.log
+      - run: xcodebuild -scheme Identifier -destination "name=My Mac" > xcodebuild.log
+      - run: swiftlint analyze --strict --reporter github-actions-logging --compiler-log-path xcodebuild.log

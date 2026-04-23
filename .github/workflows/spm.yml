@@ -31,6 +31,9 @@ jobs:
       matrix:
         swift:
           - "6.0"
+          - "6.1"
+          - "6.2"
+          - "6.3"
     container:
       image: swift:${{ matrix.swift }}
     steps:

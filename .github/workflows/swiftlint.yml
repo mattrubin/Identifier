@@ -11,14 +11,14 @@ jobs:
     container:
       image: ghcr.io/realm/swiftlint:latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: "Lint"
         run: swiftlint lint --strict --reporter github-actions-logging
   analyze:
     name: "Analyze"
     runs-on: macOS-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - run: sudo xcodes select 16.1
       - run: brew install swiftlint
       - run: |

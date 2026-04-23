@@ -37,13 +37,13 @@ jobs:
             runtime: "visionOS 1.0"
             device: "Apple Vision Pro"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: "Select Xcode ${{ matrix.env.xcode }}"
         uses: ./.github/actions/xcode-select
         with:
           version: ${{ matrix.env.xcode }}
       - name: "Cache downloaded simulator runtimes"
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/Downloads/*.dmg
           key: Xcode ${{ matrix.env.xcode }}+${{ matrix.env.runtime }}
@@ -58,7 +58,7 @@ jobs:
       - uses: sersoft-gmbh/swift-coverage-action@v4
         with:
           target-name-filter: ^Identifier$
-      - uses: codecov/codecov-action@v5
+      - uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
@@ -71,17 +71,17 @@ jobs:
         xcode:
           - "16.1"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: "Select Xcode ${{ matrix.xcode }}"
         uses: ./.github/actions/xcode-select
         with:
           version: ${{ matrix.xcode }}
       - name: "Build and test"
         run: xcodebuild test -scheme "Identifier" -destination "name=My Mac"
-      - uses: sersoft-gmbh/swift-coverage-action@v4
+      - uses: sersoft-gmbh/swift-coverage-action@v5
         with:
           target-name-filter: ^Identifier$
-      - uses: codecov/codecov-action@v5
+      - uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true

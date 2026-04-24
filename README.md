@@ -1,8 +1,8 @@
 # Identifier
 ### Unique, strongly-typed identifiers in Swift.
 
-[![Xcode CI status](https://github.com/mattrubin/Identifier/actions/workflows/xcode.yml/badge.svg)](https://github.com/mattrubin/Identifier/actions/workflows/xcode.yml)
-[![SPM CI status](https://github.com/mattrubin/Identifier/actions/workflows/spm.yml/badge.svg)](https://github.com/mattrubin/Identifier/actions/workflows/spm.yml)
+[![Xcode CI status](https://github.com/mattrubin/Identifier/actions/workflows/xcode.yml/badge.svg?branch=develop)](https://github.com/mattrubin/Identifier/actions/workflows/xcode.yml)
+[![SPM CI status](https://github.com/mattrubin/Identifier/actions/workflows/spm.yml/badge.svg?branch=develop)](https://github.com/mattrubin/Identifier/actions/workflows/spm.yml)
 [![Code Coverage](https://img.shields.io/codecov/c/github/mattrubin/Identifier/develop.svg)](https://codecov.io/gh/mattrubin/Identifier)
 ![Swift 6.0](https://img.shields.io/badge/swift-6.0-orange.svg)
 ![Platforms: iOS, macOS, tvOS, visionOS, watchOS, Linux](https://img.shields.io/badge/platforms-iOS%20%7C%20macOS%20%7C%20tvOS%20%7C%20visionOS%20%7C%20watchOS%20%7C%20Linux-blue.svg)
@@ -38,7 +38,7 @@ struct Comment: Equatable, Codable {
 Add the following line to the dependencies section of your [package manifest][Package.swift]:
 
 ```swift
-.package(url: "https://github.com/mattrubin/Identifier.git", from: "1.1.0"),
+.package(url: "https://github.com/mattrubin/Identifier.git", from: "2.0.0"),
 ```
 
 Then add `"Identifier"` to the dependencies array of any target which should be linked with this library.

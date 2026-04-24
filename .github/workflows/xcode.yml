@@ -8,42 +8,51 @@ on:
 jobs:
   simulator:
     name: "Xcode ${{ matrix.env.xcode }}, ${{ matrix.env.runtime }}, ${{ matrix.env.device }}"
-    runs-on: macOS-14
+    runs-on: ${{ matrix.env.runs-on }}
     strategy:
+      fail-fast: false
       matrix:
         env:
-          - xcode: 16.1
-            runtime: "iOS 18.1"
-            device: "iPhone 16 Plus"
-          - xcode: 16.1
+          - runs-on: macOS-26
+            xcode: 26.4
+            runtime: "iOS 26.4"
+            device: "iPhone 17 Pro Max"
+          - runs-on: macOS-26
+            xcode: 26.4
             runtime: "iOS 17.0"
             device: "iPhone Xs"
-          - xcode: 16.1
-            runtime: "watchOS 11.1"
-            device: "Apple Watch Series 10 (46mm)"
-          - xcode: 16.1
+          - runs-on: macOS-26
+            xcode: 26.4
+            runtime: "watchOS 26.4"
+            device: "Apple Watch Series 11 (46mm)"
+          - runs-on: macOS-26
+            xcode: 26.4
             runtime: "watchOS 10.0"
             device: "Apple Watch Series 4 (40mm)"
-          - xcode: 16.1
-            runtime: "tvOS 18.1"
+          - runs-on: macOS-26
+            xcode: 26.4
+            runtime: "tvOS 26.4"
             device: "Apple TV 4K (3rd generation)"
-          - xcode: 16.1
+          - runs-on: macOS-26
+            xcode: 26.4
             runtime: "tvOS 17.0"
             device: "Apple TV"
-          - xcode: 16.1
-            runtime: "visionOS 1.2"
+          - runs-on: macOS-26
+            xcode: 26.4
+            runtime: "visionOS 26.4"
             device: "Apple Vision Pro"
-          - xcode: 16.1
+          - runs-on: macOS-14
+            xcode: 16.1
             runtime: "visionOS 1.0"
             device: "Apple Vision Pro"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: "Select Xcode ${{ matrix.env.xcode }}"
         uses: ./.github/actions/xcode-select
         with:
           version: ${{ matrix.env.xcode }}
       - name: "Cache downloaded simulator runtimes"
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ~/Downloads/*.dmg
           key: Xcode ${{ matrix.env.xcode }}+${{ matrix.env.runtime }}
@@ -55,33 +64,34 @@ jobs:
           device: ${{ matrix.env.device }}
       - name: "Build and test"
         run: xcodebuild test -scheme "Identifier" -destination "id=${{ steps.prepare-simulator.outputs.destination-id }}"
-      - uses: sersoft-gmbh/swift-coverage-action@v4
+      - uses: sersoft-gmbh/swift-coverage-action@v5
         with:
           target-name-filter: ^Identifier$
-      - uses: codecov/codecov-action@v5
+      - uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
 
   macos:
-    name: "Xcode ${{ matrix.xcode }}, macOS 14"
-    runs-on: macOS-14
+    name: "Xcode ${{ matrix.xcode }}, macOS 26"
+    runs-on: macOS-26
     strategy:
+      fail-fast: false
       matrix:
         xcode:
-          - "16.1"
+          - "26.4"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: "Select Xcode ${{ matrix.xcode }}"
         uses: ./.github/actions/xcode-select
         with:
           version: ${{ matrix.xcode }}
       - name: "Build and test"
         run: xcodebuild test -scheme "Identifier" -destination "name=My Mac"
-      - uses: sersoft-gmbh/swift-coverage-action@v4
+      - uses: sersoft-gmbh/swift-coverage-action@v5
         with:
           target-name-filter: ^Identifier$
-      - uses: codecov/codecov-action@v5
+      - uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true

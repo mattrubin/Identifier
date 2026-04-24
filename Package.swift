@@ -1,24 +1,21 @@
-// swift-tools-version:5.0
+// swift-tools-version: 6.0
 
 import PackageDescription
 
 let package = Package(
     name: "Identifier",
     platforms: [
-        .iOS(.v8),
-        .macOS(.v10_10),
-        .tvOS(.v9),
-        .watchOS(.v2),
+        .iOS(.v15),
+        .macOS(.v11),
+        .tvOS(.v15),
+        .visionOS(.v1),
+        .watchOS(.v8),
     ],
     products: [
         .library(name: "Identifier", targets: ["Identifier"]),
     ],
-    dependencies: [
-        .package(url: "https://github.com/Quick/Nimble.git", from: "8.0.0"),
-    ],
     targets: [
         .target(name: "Identifier"),
-        .testTarget(name: "IdentifierTests", dependencies: ["Identifier", "Nimble"]),
-    ],
-    swiftLanguageVersions: [.v5]
+        .testTarget(name: "IdentifierTests", dependencies: ["Identifier"]),
+    ]
 )

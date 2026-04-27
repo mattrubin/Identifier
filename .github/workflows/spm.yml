@@ -13,6 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         xcode:
+          - "26.0"
           - "26.4"
     steps:
       - uses: actions/checkout@v6
@@ -21,8 +22,13 @@ jobs:
         with:
           version: ${{ matrix.xcode }}
       - run: swift --version
-      - run: swift build --build-tests -Xswiftc -warnings-as-errors
-      - run: swift test
+      - run: swift build -v --build-tests -Xswiftc -warnings-as-errors
+      - run: swift test -v --enable-code-coverage
+      - run: xcrun llvm-cov export -format="lcov" .build/debug/IdentifierPackageTests.xctest/Contents/MacOS/IdentifierPackageTests -instr-profile .build/debug/codecov/default.profdata > .build/coverage.lcov
+      - uses: codecov/codecov-action@v6
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true
   Linux:
     name: Linux, Swift ${{ matrix.swift }}
     runs-on: ubuntu-latest
@@ -39,5 +45,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - run: swift --version
-      - run: swift build --build-tests -Xswiftc -warnings-as-errors
-      - run: swift test
+      - run: swift build -v --build-tests -Xswiftc -warnings-as-errors
+      - run: swift test -v --enable-code-coverage
+      - run: llvm-cov export -format="lcov" .build/debug/IdentifierPackageTests.xctest -instr-profile .build/debug/codecov/default.profdata > .build/coverage.lcov
+      - run: apt update && apt -q install -y curl # Required by Codecov's uploader
+      - uses: codecov/codecov-action@v6
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true

@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: © 2019-2024 Matt Rubin
+// SPDX-License-Identifier: MIT
+
 import Foundation
 import Testing
 

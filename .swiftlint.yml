@@ -21,3 +21,8 @@ disabled_rules:
 
 trailing_comma:
   mandatory_comma: true
+
+file_header:
+  required_pattern: |
+    \/\/ SPDX-FileCopyrightText: © (\d{4}|\d{4}-\d{4}) Matt Rubin
+    \/\/ SPDX-License-Identifier: MIT

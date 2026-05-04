@@ -7,7 +7,7 @@ import PackageDescription
 let package = Package(
     name: "Identifier",
     products: [
-        .library(name: "Identifier", targets: ["Identifier"]),
+        .library(name: "Identifier", targets: ["Identifier"])  // https://github.com/swiftlang/swift-format/issues/874
     ],
     targets: [
         .target(name: "Identifier"),

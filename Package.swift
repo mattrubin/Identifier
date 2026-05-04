@@ -1,18 +1,13 @@
+// SPDX-FileCopyrightText: © 2019-2026 Matt Rubin
+// SPDX-License-Identifier: MIT
 // swift-tools-version: 6.0
 
 import PackageDescription
 
 let package = Package(
     name: "Identifier",
-    platforms: [
-        .iOS(.v15),
-        .macOS(.v11),
-        .tvOS(.v15),
-        .visionOS(.v1),
-        .watchOS(.v8),
-    ],
     products: [
-        .library(name: "Identifier", targets: ["Identifier"]),
+        .library(name: "Identifier", targets: ["Identifier"])  // https://github.com/swiftlang/swift-format/issues/874
     ],
     targets: [
         .target(name: "Identifier"),

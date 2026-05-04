@@ -1,7 +1,9 @@
-import Foundation
-import Testing
+// SPDX-FileCopyrightText: © 2019-2024 Matt Rubin
+// SPDX-License-Identifier: MIT
 
+import Foundation
 import Identifier
+import Testing
 
 struct IdentifierTests {
     let firstUUID: UUID
@@ -30,7 +32,7 @@ struct IdentifierTests {
     @Test
     func testEquality() {
         let first = Identifier<Void>(rawValue: firstUUID)
-        #expect(first == first) // swiftlint:disable:this identical_operands
+        #expect(first == first)  // swiftlint:disable:this identical_operands
 
         let second = Identifier<Void>(rawValue: secondUUID)
         let secondAgain = Identifier<Void>(rawValue: secondUUID)
@@ -40,10 +42,10 @@ struct IdentifierTests {
         #expect(first != secondAgain)
 
         let third = Identifier<Void>.random()
-        #expect(third == third) // swiftlint:disable:this identical_operands
+        #expect(third == third)  // swiftlint:disable:this identical_operands
 
         let fourth = Identifier<Void>.random()
-        #expect(fourth == fourth) // swiftlint:disable:this identical_operands
+        #expect(fourth == fourth)  // swiftlint:disable:this identical_operands
 
         #expect(third != fourth)
     }
@@ -113,8 +115,9 @@ struct IdentifierTests {
 
         let decoder = JSONDecoder()
         #expect(
-            try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: json).value ==
-            Identifier(rawValue: uuid))
+            try decoder.decode(JSONFragmentEncodingWrapper<Identifier<Void>>.self, from: json).value
+                == Identifier(rawValue: uuid)
+        )
 
         let emptyJSON = Data()
         #expect(throws: DecodingError.self) {
@@ -141,7 +144,7 @@ struct IdentifierTests {
         let producer = IdentifierProducer()
         let identifier: Identifier<Void> = await producer.makeIdentifier()
 
-        #expect(identifier == identifier) // swiftlint:disable:this identical_operands
+        #expect(identifier == identifier)  // swiftlint:disable:this identical_operands
     }
 }
 

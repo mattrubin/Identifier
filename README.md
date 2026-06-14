@@ -47,6 +47,11 @@ Then add `"Identifier"` to the dependencies array of any target which should be 
 [Package.swift]: https://github.com/swiftlang/swift-package-manager/tree/main/Documentation
 
 
+## Documentation
+
+API documentation is available on the [Swift Package Index](https://swiftpackageindex.com/mattrubin/Identifier/documentation).
+
+
 ## License
 
 Identifier is released under the [MIT License](LICENSE.md).

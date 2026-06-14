@@ -10,7 +10,7 @@
   "lineBreakBetweenDeclarationAttributes": true,
   "prioritizeKeepingFunctionOutputTogether": true,
   "rules": {
-    "AllPublicDeclarationsHaveDocumentation": false, // FIXME
+    "AllPublicDeclarationsHaveDocumentation": true,
     "AlwaysUseLiteralForEmptyCollectionInit": true,
     "AlwaysUseLowerCamelCase": false,
     "AmbiguousTrailingClosureOverload": true,
